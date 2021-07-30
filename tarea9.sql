@@ -30,22 +30,28 @@ USE `tarea9`;
 --
 
 CREATE TABLE `paciente` (
-  `Id` int(11) NOT NULL,
-  `Cedula` varchar(11) NOT NULL,
-  `Nombre` varchar(30) NOT NULL,
-  `Apellido` varchar(50) NOT NULL,
-  `Telefono` varchar(10) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Fecha_Nac` varchar(8) NOT NULL,
-  `Tipo_Sangre` varchar(2) NOT NULL,
-  `Direccion` varchar(90) NOT NULL,
-  `Latitud` varchar(15) NOT NULL,
-  `Longitud` varchar(15) NOT NULL,
-  `Positivo` tinyint(1) NOT NULL,
-  `Justificacion` varchar(120) NOT NULL,
-  `Provincia` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Id` INT(11) NOT NULL,
+  `Cedula` VARCHAR(11) NOT NULL,
+  `Nombre` VARCHAR(30) NOT NULL,
+  `Apellido` VARCHAR(50) NOT NULL,
+  `Telefono` VARCHAR(10) NOT NULL,
+  `Email` VARCHAR(50) NOT NULL,
+  `Fecha_Nac` VARCHAR(8) NOT NULL,
+  `Tipo_Sangre` VARCHAR(2) NOT NULL,
+  `Direccion` VARCHAR(90) NOT NULL,
+  `Latitud` VARCHAR(15) NOT NULL,
+  `Longitud` VARCHAR(15) NOT NULL,
+  `Positivo` TINYINT(1) NOT NULL,
+  `Justificacion` VARCHAR(120) NOT NULL,
+  `Provincia` VARCHAR(30) NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
 COMMIT;
+
+
+-- Indexes for table `Pacientes`
+--
+ALTER TABLE `paciente`
+  ADD PRIMARY KEY (`Id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
