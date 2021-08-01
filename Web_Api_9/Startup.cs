@@ -14,7 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web_Api_9.Models;
 using Microsoft.AspNetCore.Cors;
-
+using Web_Api_9.Services;
 
 namespace Web_Api_9
 {
@@ -39,6 +39,9 @@ namespace Web_Api_9
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web_Api_9", Version = "v1" });
             });
+
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            services.AddScoped<IEmailSenderService, EmailSenderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
