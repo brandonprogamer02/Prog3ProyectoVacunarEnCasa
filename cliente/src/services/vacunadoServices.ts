@@ -30,10 +30,15 @@ class VacunadoService {
                     callback(response.data)
                })
      }
-     async getVacunadoByCedula(cedula: number): Promise<Vacunado> {
-          let response: AxiosResponse<ApiResponse<Vacunado[]>> = await baseAxios.get('/Vacunadoes/GetVacunadosCedu/' + cedula)
-          let data: Vacunado[] = response.data.ls
-          return data[0]
+     async isRegistered(cedula: string, callback: (data: boolean) => void): Promise<void> {
+          
+          baseAxios.get('/Pacientes')
+          .then((response: AxiosResponse<ApiResponse<Vacunado[]>>) => {
+               let data: Vacunado[] = response.data.ls
+               const isRegistered = data.some(data => data.cedula == cedula)
+               callback(isRegistered)
+          })
+          
      }
 }
 

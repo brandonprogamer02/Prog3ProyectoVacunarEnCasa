@@ -1,0 +1,3 @@
+cuando se envie la informacion: dar las gracias
+
+validar de que si una persona ya lleno el formulario no pueda llenarlo de nuevo

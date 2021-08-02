@@ -23,27 +23,32 @@ export default function VacunadosView() {
 
      async function saveVacunado(e: React.FormEvent) {
           e.preventDefault()
-          const obj: Vacunado = {
-               id: Math.trunc(Math.random() * 10000000),
-               apellido: txtApellido,
-               cedula: txtCedula,
-               direccion: txtDireccion,
-               email: txtCorreo,
-               fechaNac: txtFechaNac,
-               justificacion: txtJustification,
-               latitud: txtLatitud,
-               longitud: txtLongitud,
-               nombre: txtNombre,
-               positivo: hasCovid,
-               provincia: txtProvincia,
-               telefono: txtTelefono,
-               tipoSangre: selectTipoSangre == '' ? getTiposSangre()[0] : selectTipoSangre
-          }
+          VacunadoService.isRegistered(txtCedula, isRegistered => {
+               if (isRegistered) alert('Ya usted ha sido registrado en nuestra aplicacion')
+               else {
+                    const obj: Vacunado = {
+                         id: Math.trunc(Math.random() * 10000000),
+                         apellido: txtApellido,
+                         cedula: txtCedula,
+                         direccion: txtDireccion,
+                         email: txtCorreo,
+                         fechaNac: txtFechaNac,
+                         justificacion: txtJustification,
+                         latitud: txtLatitud,
+                         longitud: txtLongitud,
+                         nombre: txtNombre,
+                         positivo: hasCovid,
+                         provincia: txtProvincia,
+                         telefono: txtTelefono,
+                         tipoSangre: selectTipoSangre == '' ? getTiposSangre()[0] : selectTipoSangre
+                    }
 
-          VacunadoService.insertVacunado(obj, (data) => {
+                    VacunadoService.insertVacunado(obj, (data) => {
 
-               alert('Informacion guardada')
-               limpiar()
+                         alert('Gracias por registrarse')
+                         limpiar()
+                    })
+               }
           })
      }
 
@@ -73,7 +78,9 @@ export default function VacunadosView() {
                <form className={s['form-container']}>
                     <div>
                          <label className='my-2 '>Cedula</label>
-                         <label className='my-2 px-2'>{txtCedula}</label> <br />
+                         <input className='my-2 px-2' type="number"
+                              value={txtCedula} onChange={e => setTxtCedula(e.currentTarget.value.toString())}
+                         /> <br />
                     </div>
                     <div>
                          <label className='my-2 '>Nombre</label>
@@ -129,7 +136,7 @@ export default function VacunadosView() {
 
                          <input type="text" className='my-2 px-2'
                               value={txtLatitud} onChange={e => setTxtLatitud(e.currentTarget.value)}
-                              disabled 
+                              disabled
                          /> <br />
                     </div>
                     <div>
@@ -137,7 +144,7 @@ export default function VacunadosView() {
 
                          <input type="text" className='my-2 px-2'
                               value={txtLongitud} onChange={e => setTxtLongitud(e.currentTarget.value)}
-                              disabled 
+                              disabled
                          /> <br />
                     </div>
                     <div>
