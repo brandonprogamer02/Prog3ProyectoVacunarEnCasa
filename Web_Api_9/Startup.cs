@@ -18,52 +18,80 @@ using Web_Api_9.Services;
 
 namespace Web_Api_9
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
+   public class Startup
+   {
+      public Startup(IConfiguration configuration)
+      {
+         Configuration = configuration;
+      }
+
+      public IConfiguration Configuration { get; }
+
+      // This method gets called by the runtime. Use this method to add services to the container.
+      public void ConfigureServices(IServiceCollection services)
+      {
+         
+         services.AddCors(options =>
         {
-            Configuration = configuration;
-        }
+            options.AddPolicy("CorsPolicy",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                );
+        });
+         
+         services.AddControllers();
+         services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-        public IConfiguration Configuration { get; }
+         services.AddDbContext<tarea9Context>(options => options.UseMySql("server=localhost; user=root; Database=tarea9", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")));
+         services.AddSwaggerGen(c =>
+         {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web_Api_9", Version = "v1" });
+         });
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+         services.AddCors();
+         services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+         services.AddScoped<IEmailSenderService, EmailSenderService>();
 
-            services.AddControllers();
-            services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+      }
 
-           services.AddDbContext<tarea9Context>(options => options.UseMySql("Server=Localhost; uid=root; pwd=mysql; Database=tarea9", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")));
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web_Api_9", Version = "v1" });
-            });
+      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+      {
+         if (env.IsDevelopment())
+         {
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web_Api_9 v1"));
+         }
 
-            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
-            services.AddScoped<IEmailSenderService, EmailSenderService>();
-        }
+         app.UseHttpsRedirection();
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web_Api_9 v1"));
-            }
+         app.UseRouting();
+         app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials 
 
-            app.UseHttpsRedirection();
+         app.UseAuthorization();
 
-            app.UseRouting();
+         app.UseEndpoints(endpoints =>
+         {
+            endpoints.MapControllers();
+         });
 
-            app.UseAuthorization();
+         app.UseCors(x => x
+             .AllowAnyMethod()
+             .AllowAnyHeader()
+             .SetIsOriginAllowed(origin => true) // allow any origin
+             .AllowCredentials()); // allow credentials                                ); //This needs to set everything allowed
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+
+         app.UseEndpoints(endpoints =>
+         {
+            endpoints.MapControllers();
+         });
+      }
+   }
 }
