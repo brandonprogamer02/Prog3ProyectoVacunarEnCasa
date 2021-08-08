@@ -10,5 +10,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>Web_Api_9.Models.tarea9Context</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <NameOfLastUsedPublishProfile>apiwebdiog - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ITLA\\programacion 3\\tarea10\\Web_Api_9\\Web_Api_9.csproj": {}
+    "C:\\Users\\Diogenes Ulloa\\Desktop\\repository\\Prog3ProyectoVacunarEnCasa\\Web_Api_9\\Web_Api_9.csproj": {}
   },
   "projects": {
-    "C:\\ITLA\\programacion 3\\tarea10\\Web_Api_9\\Web_Api_9.csproj": {
+    "C:\\Users\\Diogenes Ulloa\\Desktop\\repository\\Prog3ProyectoVacunarEnCasa\\Web_Api_9\\Web_Api_9.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ITLA\\programacion 3\\tarea10\\Web_Api_9\\Web_Api_9.csproj",
+        "projectUniqueName": "C:\\Users\\Diogenes Ulloa\\Desktop\\repository\\Prog3ProyectoVacunarEnCasa\\Web_Api_9\\Web_Api_9.csproj",
         "projectName": "Web_Api_9",
-        "projectPath": "C:\\ITLA\\programacion 3\\tarea10\\Web_Api_9\\Web_Api_9.csproj",
-        "packagesPath": "C:\\Users\\BrandonYEros\\.nuget\\packages\\",
-        "outputPath": "C:\\ITLA\\programacion 3\\tarea10\\Web_Api_9\\obj\\",
+        "projectPath": "C:\\Users\\Diogenes Ulloa\\Desktop\\repository\\Prog3ProyectoVacunarEnCasa\\Web_Api_9\\Web_Api_9.csproj",
+        "packagesPath": "C:\\Users\\Diogenes Ulloa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Diogenes Ulloa\\Desktop\\repository\\Prog3ProyectoVacunarEnCasa\\Web_Api_9\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\BrandonYEros\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Diogenes Ulloa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -111,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
